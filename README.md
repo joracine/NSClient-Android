@@ -1,32 +1,31 @@
-NS Client
-===========
+=NS Client
 
 [![Join the chat at https://gitter.im/nightscout/NSClient-Android](https://badges.gitter.im/nightscout/NSClient-Android.svg)](https://gitter.im/nightscout/NSClient-Android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
- - What it does?
+**What does NS Client do?**
+
+It connects to your Nightscout server, and provides an means for applications to connect to it.
  
- It just connects to your Nightscout server and provide support for other applications.
+**Does it have a GUI?**
+
+Only debugging GUI, for developers. None for regular. Maybe someone can build and contribute back? :)
  
- - Does it have GUI?
+**How do I use it?**
  
- No GUI suitable for regular users at the moment. But maybe someone write it.
+It sends broadcasts with data from nightscout. So you can write an app that listen to the broadcasts and can do stuff with it. You can send broadcasts back to write back to the MongoDB database.
  
- - How to use it?
+**Any other features?**
+
+You can emulate xDrip apps with NS Client if you don't have access to a physical device. It supports the xDrip extension for DanaAps too (OpenAPS implementation for DanaR pump).
  
- Write your own app and listen to broadcasts to get new data from Nightscout. Send broadcasts to write to mongo database.
+**Do you code sample/examples?**
+
+Look at the and of MainActivity, in source.
  
- - Any other features there?
+**And how do I test that it works?**
+
+When you upload a treatment, you should recieve it through a treatment broadcast, once it is written to MongoDB.
  
- NS Client can emulate xDrip app if you don't have physical device available. It supports xDrip extension for DanaAps too (OpenAPS implementation for DanaR pump)
- 
- - Some examples?
- 
- Look at the and of MainActivity
- 
- - And how do I get response?
- 
- When you upload treatment you should receieve it back if you listen to treatment broadcasts after it goes through mongo
- 
- - Do I need care about success/failure of upload?
- 
- No. NS client takes care about it. Undelivered records are queued and delivered when client reconnects to server.
+**I need to write retry logic for connection failures and similar errors?**
+
+No. NSClient queues requests, and retries undelivered records once the client reconnects to the Nightscout server.
